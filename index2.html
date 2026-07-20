@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maitreya Bhagwat | Street Photography</title>
+    
+    <!-- Importing Artistic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. GLOBAL & TEXTURE */
+        :root {
+            --bg-color: #030303;
+            --text-color: #f0f0f0;
+            --accent-color: #333333;
+            --meta-color: #888888;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* 35mm Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* 2. CUSTOM CURSOR (Only visible on Desktop) */
+        @media (hover: hover) and (pointer: fine) {
+            * { cursor: none !important; }
+            .custom-cursor {
+                position: fixed;
+                top: 0; left: 0;
+                width: 15px; height: 15px;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 10000;
+                transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+                mix-blend-mode: difference;
+            }
+            .custom-cursor.hovering {
+                width: 60px;
+                height: 60px;
+                background-color: rgba(255,255,255,0.1);
+            }
+        }
+
+        /* 3. CINEMATIC PRELOADER */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        .counter {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        /* 4. LIGHTBOX */
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(3,3,3,0.98);
+            z-index: 9998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            border: 1px solid #222;
+        }
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 40px;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        /* 5. TYPOGRAPHY & HEADER */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8vw 4vw;
+        }
+
+        header {
+            margin-bottom: 12vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 9rem);
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0 0 2rem 0;
+            letter-spacing: 4px;
+        }
+
+        .about-text {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+            max-width: 650px;
+            color: #a0a0a0;
+            line-height: 1.8;
+            margin-left: 2vw;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+        }
+
+        /* 6. ASYMMETRICAL EDITORIAL GRID */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2vw;
+            align-items: start;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* The Dark Border Style Wrapper */
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #0b0b0b;
+            outline: 1px solid #1a1a1a;
+            outline-offset: 4px; 
+            margin-bottom: 4px;
+        }
+
+        /* Layout Sizes */
+        .hero-shot { grid-column: 2 / 12; margin-bottom: 5vh; }
+        .hero-shot .image-wrapper { aspect-ratio: 16 / 9; }
+
+        .portrait-left { grid-column: 1 / 6; }
+        .portrait-left .image-wrapper { aspect-ratio: 4 / 5; }
+
+        .landscape-right { grid-column: 6 / 13; margin-top: 10vh; }
+        .landscape-right .image-wrapper { aspect-ratio: 3 / 2; }
+
+        .center-focus { grid-column: 4 / 10; margin: 10vh 0; }
+        .center-focus .image-wrapper { aspect-ratio: 1 / 1; }
+
+        .small-left { grid-column: 2 / 6; }
+        .small-left .image-wrapper { aspect-ratio: 4 / 5; }
+
+        .portrait-right { grid-column: 8 / 12; margin-top: -10vh; }
+        .portrait-right .image-wrapper { aspect-ratio: 3 / 4; }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%) contrast(110%);
+            transition: filter 0.8s ease, transform 0.8s ease;
+        }
+
+        .image-wrapper:hover img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.02);
+        }
+
+        .photo-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .photo-title { color: #d0d0d0; font-weight: 700; }
+        .photo-desc { color: var(--meta-color); text-align: right; max-width: 50%; }
+
+        /* 7. PROFESSIONAL FOOTER */
+        footer {
+            margin-top: 15vh;
+            padding: 60px 0;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-top: 1px solid var(--accent-color);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 4vw;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0%; height: 1px;
+            background-color: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-copyright {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .gallery { display: flex; flex-direction: column; gap: 60px; }
+            .gallery-item { width: 100%; margin: 0 !important; }
+            .image-wrapper { aspect-ratio: 4/5 !important; outline: none; }
+            .hero-shot .image-wrapper { aspect-ratio: 3/2 !important; }
+            .photo-meta { flex-direction: column; gap: 4px; }
+            .photo-desc { text-align: left; max-width: 100%; }
+            .footer-links { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor"></div>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="counter">0%</div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <div class="close-btn">[ CLOSE ]</div>
+        <img src="" alt="Enlarged Image">
+    </div>
+
+    <div class="film-grain"></div>
+
+    <div class="container">
+        <header>
+            <h1>Maitreya<br>Bhagwat</h1>
+            <p class="about-text">
+                I’m a 19-year-old photographer based in Maharashtra. I picked up my uncle's bridge camera at 14 and eventually found my focus in black-and-white street and documentary work.
+                <br><br>
+                This site is my experimental space for unscripted street shots. On the commercial side, I run Metal Eye Visual Studios for industrial and product photography, and in my downtime, I shoot wildlife.
+                <br><br>
+                I still have a lot to learn. This is just the start.
+            </p>
+        </header>
+
+        <main>
+            <div class="gallery">
+                
+                <div class="gallery-item hero-shot">
+                    <div class="image-wrapper"><img src="23.jpeg" alt="Boy with cotton candy"></div>
+                    <div class="photo-meta"><span class="photo-title">The Gaze</span><span class="photo-desc">pune,2025</span></div>
+                </div>
+                
+                <div class="gallery-item portrait-left">
+                    <div class="image-wrapper"><img src="6.jpeg" alt="Older man with arms crossed"></div>
+                    <div class="photo-meta"><span class="photo-title">Pillars</span><span class="photo-desc">Morning street portrait</span></div>
+                </div>
+                
+                <div class="gallery-item landscape-right">
+                    <div class="image-wrapper"><img src="22.jpeg" alt="Motion blur man walking"></div>
+                    <div class="photo-meta"><span class="photo-title">Kinetic #01</span><span class="photo-desc">Motion and routine</span></div>
+                </div>
+                
+                <div class="gallery-item center-focus">
+                    <div class="image-wrapper"><img src="2.jpeg" alt="Woman looking through car window"></div>
+                    <div class="photo-meta"><span class="photo-title">Eyes in Need</span><span class="photo-desc">Street portrait</span></div>
+                </div>
+                
+                <div class="gallery-item small-left">
+                    <div class="image-wrapper"><img src="10.jpeg" alt="Monkey mask and smiley balloon"></div>
+                    <div class="photo-meta"><span class="photo-title">Absurdity</span><span class="photo-desc">Festival fragments</span></div>
+                </div>
+                
+                <div class="gallery-item portrait-right">
+                    <div class="image-wrapper"><img src="33.jpeg" alt="Man with helmet shadow"></div>
+                    <div class="photo-meta"><span class="photo-title">Geometry</span><span class="photo-desc">High noon contrast</span></div>
+                </div>
+
+                <div class="gallery-item hero-shot" style="margin-top: 10vh;">
+                    <div class="image-wrapper"><img src="3.jpeg" alt="Man hitting drum over fire"></div>
+                    <div class="photo-meta"><span class="photo-title">Heat & Sound</span><span class="photo-desc">Tuning the drum</span></div>
+                </div>
+
+                <div class="gallery-item portrait-left">
+                    <div class="image-wrapper"><img src="13.jpeg" alt="Kids in yellow toy train"></div>
+                    <div class="photo-meta"><span class="photo-title">Framed</span><span class="photo-desc">Primary colors</span></div>
+                </div>
+
+                <div class="gallery-item landscape-right">
+                    <div class="image-wrapper"><img src="18.jpeg" alt="Motion blur motorcycle"></div>
+                    <div class="photo-meta"><span class="photo-title">Kinetic #02</span><span class="photo-desc">Shadow crossing</span></div>
+                </div>
+
+            </div>
+        </main>
+
+       <footer>
+            <div class="footer-links">
+                <!-- Phone link triggers a call on mobile -->
+                <a href="tel:+918767350426">Call: 8767350426</a>
+                
+                <!-- target="_blank" opens the link in a new tab -->
+                <a href="https://instagram.com/maitreya_sb" target="_blank" rel="noopener noreferrer">Instagram @maitreya_sb</a>
+                
+                <a href="https://maitreyasb.github.io/Metal-Eye-website/" target="_blank" rel="noopener noreferrer">Metal Eye Visual Studios</a>
+            </div>
+            <p class="footer-copyright">Maitreya Bhagwat &copy; 2026 // Street & Documentary</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT FOR ALL INTERACTIVE FEATURES -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. PRELOADER LOGIC
+            let count = 0;
+            const counterElement = document.querySelector('.counter');
+            const preloader = document.getElementById('preloader');
+            
+            let interval = setInterval(() => {
+                if(count >= 100) {
+                    clearInterval(interval);
+                    counterElement.innerText = '100%';
+                    preloader.style.opacity = '0';
+                    setTimeout(() => { preloader.style.visibility = 'hidden'; }, 800);
+                } else {
+                    count += Math.floor(Math.random() * 15) + 1;
+                    if(count > 100) count = 100;
+                    counterElement.innerText = count + '%';
+                }
+            }, 50);
+
+            // 2. CUSTOM CURSOR LOGIC
+            const cursor = document.querySelector('.custom-cursor');
+            if(window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+
+                const hoverElements = document.querySelectorAll('.image-wrapper, a, .close-btn');
+                hoverElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+                });
+            }
+
+            // 3. CINEMATIC SCROLL FADES
+            const items = document.querySelectorAll('.gallery-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            items.forEach(item => observer.observe(item));
+
+            // 4. LIGHTBOX LOGIC
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const closeBtn = document.querySelector('.close-btn');
+            const galleryImages = document.querySelectorAll('.image-wrapper img');
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.src; 
+                    lightbox.classList.add('active'); 
+                });
+            });
+
+            closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) lightbox.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
