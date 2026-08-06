@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maitreya Bhagwat | Black &amp; White Photography</title>
+
+    <meta name="description" content="Black-and-white photography from Maharashtra, India — street, documentary, ritual and architecture. Personal work by Maitreya Bhagwat.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maitreyasb.github.io/Maitreya-Bhagwat/">
+    <meta property="og:title" content="Maitreya Bhagwat | Black &amp; White Photography">
+    <meta property="og:description" content="Street, documentary, ritual and architecture in black and white.">
+    <meta property="og:image" content="https://maitreyasb.github.io/Maitreya-Bhagwat/22.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#030303">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #030303;
+            --text-color: #f0f0f0;
+            --accent-color: #333333;
+            --meta-color: #888888;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .gallery-item { opacity: 1 !important; transform: none !important; }
+        }
+
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            * { cursor: none !important; }
+            .custom-cursor {
+                position: fixed; top: 0; left: 0;
+                width: 15px; height: 15px;
+                border: 2px solid #fff; border-radius: 50%;
+                transform: translate(-50%, -50%);
+                pointer-events: none; z-index: 10000;
+                transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+                mix-blend-mode: difference;
+            }
+            .custom-cursor.hovering { width: 60px; height: 60px; background-color: rgba(255,255,255,0.1); }
+        }
+
+        /* PRELOADER */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-color); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .counter { font-family: 'Space Mono', monospace; font-size: 2.5rem; color: #fff; letter-spacing: 2px; }
+
+        /* LIGHTBOX */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(3,3,3,0.98); z-index: 9998;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        #lightbox.active { opacity: 1; pointer-events: all; }
+        /* The grid stays black-and-white until hover. The lightbox always shows the
+           photo as shot — this is how the colour frames reach phone users, who have
+           no pointer to hover with. Delete these two lines to disable. */
+        #lightbox img { filter: none !important; }
+
+        #lightbox img {
+            max-width: 90vw; max-height: 80vh; object-fit: contain;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5); border: 1px solid #222;
+        }
+        .lightbox-caption {
+            position: absolute; bottom: 4vh; left: 0; right: 0;
+            text-align: center; font-family: 'Space Mono', monospace;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--meta-color); padding: 0 5vw;
+        }
+        .close-btn, .nav-btn {
+            position: absolute; background: none; border: none; color: #fff;
+            font-family: 'Space Mono', monospace; font-size: 1.2rem;
+            text-transform: uppercase; padding: 10px;
+        }
+        .close-btn { top: 30px; right: 40px; }
+        .nav-btn { top: 50%; transform: translateY(-50%); font-size: 1.6rem; opacity: 0.6; transition: opacity 0.3s; }
+        .nav-btn:hover { opacity: 1; }
+        #prevBtn { left: 2vw; }
+        #nextBtn { right: 2vw; }
+
+        /* HEADER */
+        .container { max-width: 1400px; margin: 0 auto; padding: 8vw 4vw; }
+        header { margin-bottom: 8vh; display: flex; flex-direction: column; align-items: flex-start; }
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 9rem);
+            text-transform: uppercase; line-height: 1.1;
+            margin: 0 0 2rem 0; letter-spacing: 4px;
+        }
+        .about-text {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+            max-width: 650px; color: #a0a0a0; line-height: 1.8;
+            margin-left: 2vw; border-left: 2px solid var(--accent-color); padding-left: 20px;
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            display: flex; flex-wrap: wrap; gap: 2.5vw;
+            margin-bottom: 10vh; padding-bottom: 20px;
+            border-bottom: 1px solid var(--accent-color);
+            font-family: 'Space Mono', monospace;
+        }
+        .filter-btn {
+            background: none; border: none; padding: 6px 0;
+            color: var(--meta-color);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
+            position: relative; transition: color 0.3s ease;
+        }
+        .filter-btn::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0%; height: 1px; background-color: #fff; transition: width 0.3s ease;
+        }
+        .filter-btn:hover { color: var(--text-color); }
+        .filter-btn[aria-pressed="true"] { color: #fff; }
+        .filter-btn[aria-pressed="true"]::after { width: 100%; }
+        .filter-count { font-size: 0.65rem; color: var(--accent-color); margin-left: 6px; vertical-align: super; }
+
+        /* GALLERY */
+        .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2vw; align-items: start; }
+        .gallery-item {
+            display: flex; flex-direction: column; gap: 12px;
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-item.in-view { opacity: 1; transform: translateY(0); }
+        .gallery-item.is-hidden { display: none; }
+
+        .image-wrapper {
+            position: relative; width: 100%; overflow: hidden;
+            background-color: #0b0b0b;
+            outline: 1px solid #1a1a1a; outline-offset: 4px;
+            margin-bottom: 4px; border: none; padding: 0; display: block;
+        }
+        .image-wrapper img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: grayscale(100%) contrast(110%);
+            transition: filter 0.8s ease, transform 0.8s ease;
+        }
+        .image-wrapper:hover img { filter: grayscale(0%) contrast(100%); transform: scale(1.02); }
+
+        /*
+          LAYOUT PATTERNS
+          These are applied by JavaScript based on each photo's position among the
+          CURRENTLY VISIBLE items. That's what keeps the asymmetric grid from
+          collapsing into holes when you switch tabs. Don't put them in the HTML.
+        */
+        .layout-a { grid-column: 2 / 12; margin-bottom: 5vh; }
+        .layout-a .image-wrapper { aspect-ratio: 16 / 9; }
+        .layout-b { grid-column: 1 / 6; }
+        .layout-b .image-wrapper { aspect-ratio: 4 / 5; }
+        .layout-c { grid-column: 6 / 13; margin-top: 10vh; }
+        .layout-c .image-wrapper { aspect-ratio: 3 / 2; }
+        .layout-d { grid-column: 4 / 10; margin: 10vh 0; }
+        .layout-d .image-wrapper { aspect-ratio: 1 / 1; }
+        .layout-e { grid-column: 2 / 6; }
+        .layout-e .image-wrapper { aspect-ratio: 4 / 5; }
+        .layout-f { grid-column: 8 / 12; margin-top: -10vh; }
+        .layout-f .image-wrapper { aspect-ratio: 3 / 4; }
+
+        .photo-meta {
+            display: flex; justify-content: space-between; align-items: baseline;
+            font-family: 'Space Mono', monospace; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;
+        }
+        .photo-title { color: #d0d0d0; font-weight: 700; }
+        .photo-desc { color: var(--meta-color); text-align: right; max-width: 50%; }
+
+        .empty-state {
+            grid-column: 1 / -1; text-align: center; padding: 15vh 0;
+            font-family: 'Space Mono', monospace; color: var(--meta-color);
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 15vh; padding: 60px 0; text-align: center;
+            font-family: 'Space Mono', monospace; font-size: 0.8rem;
+            text-transform: uppercase; border-top: 1px solid var(--accent-color);
+        }
+        .footer-links { display: flex; justify-content: center; gap: 4vw; margin-bottom: 30px; }
+        .footer-links a { color: #fff; text-decoration: none; letter-spacing: 1px; position: relative; padding-bottom: 4px; }
+        .footer-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0%; height: 1px; background-color: #fff; transition: width 0.3s ease;
+        }
+        .footer-links a:hover::after { width: 100%; }
+        .footer-copyright { color: var(--accent-color); }
+
+        /* Opt a single photo out of the black-and-white filter */
+        .no-grayscale img,
+        .no-grayscale:hover img { filter: none !important; }
+
+        @media (max-width: 768px) {
+            .gallery { display: flex; flex-direction: column; gap: 60px; }
+            .gallery-item { width: 100%; margin: 0 !important; }
+            .image-wrapper { aspect-ratio: 4/5 !important; outline: none; }
+            .layout-a .image-wrapper { aspect-ratio: 3/2 !important; }
+            .photo-meta { flex-direction: column; gap: 4px; }
+            .photo-desc { text-align: left; max-width: 100%; }
+            .filter-bar { gap: 5vw; margin-bottom: 8vh; }
+            .filter-btn { font-size: 0.75rem; letter-spacing: 1px; }
+            .footer-links { flex-direction: column; gap: 15px; }
+            .nav-btn { font-size: 1.2rem; }
+            #prevBtn { left: 0; }
+            #nextBtn { right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" aria-hidden="true"></div>
+
+    <div id="preloader"><div class="counter">0%</div></div>
+
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photograph">
+        <button class="close-btn" id="closeBtn" aria-label="Close">[ CLOSE ]</button>
+        <button class="nav-btn" id="prevBtn" aria-label="Previous photograph">&#8592;</button>
+        <img src="" alt="">
+        <button class="nav-btn" id="nextBtn" aria-label="Next photograph">&#8594;</button>
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <div class="container">
+        <header>
+            <h1>Maitreya<br>Bhagwat</h1>
+            <p class="about-text">
+                Photographer based in Maharashtra. I picked up my uncle's bridge camera at 14 and found my footing in black-and-white street and documentary work.
+                <br><br>
+                It has spread out since then — ritual, architecture, whatever holds still long enough. This is the personal work. On the commercial side I run Metal Eye Visual Studios for industrial and product photography.
+                <br><br>
+                Six years in, still shooting every week.
+            </p>
+        </header>
+
+        <!-- FILTER BAR: counts are calculated automatically, don't hardcode them -->
+        <nav class="filter-bar" aria-label="Filter photographs by subject">
+            <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+            <!-- People holds 22 of 26 frames, so this tab barely filters anything.
+                 Delete this one line if you'd rather it didn't. -->
+            <button class="filter-btn" data-filter="people" aria-pressed="false">People</button>
+            <button class="filter-btn" data-filter="shapes" aria-pressed="false">Shapes</button>
+            <button class="filter-btn" data-filter="shadows" aria-pressed="false">Shadows</button>
+            <button class="filter-btn" data-filter="fog" aria-pressed="false">Fog</button>
+            <button class="filter-btn" data-filter="motion" aria-pressed="false">Motion</button>
+        </nav>
+
+        <main>
+            <!--
+              ============================================================
+              HOW TO ADD A PHOTO
+              ============================================================
+              Copy the block below, paste it anywhere inside <div class="gallery">,
+              and fill in the four things marked. Nothing else needs changing —
+              the layout, filtering and lightbox all pick it up automatically.
+
+              <div class="gallery-item" data-tags="people shadows">
+                  <button class="image-wrapper">
+                      <img src="FILENAME.jpg" alt="PLAIN DESCRIPTION OF WHAT'S IN THE FRAME" loading="lazy" decoding="async">
+                  </button>
+                  <div class="photo-meta">
+                      <span class="photo-title">TITLE</span>
+                      <span class="photo-desc">PLACE, YEAR</span>
+                  </div>
+              </div>
+
+              data-tags takes ANY combination, space-separated:
+                  people  shadows  shapes  motion
+              A photo with data-tags="people shadows" shows up under both.
+              A photo needs at least one tag or it'll only appear under "All".
+
+              Order in this file = order on the page. Put your strongest frame first.
+              ============================================================
+            -->
+            <div class="gallery" id="gallery">
+
+                <div class="gallery-item" data-tags="people motion">
+                    <button class="image-wrapper"><img src="22.jpeg" alt="A man walking with a steel bucket, panned so the background streaks and he stays sharp" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Carrying Water</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people motion">
+                    <button class="image-wrapper"><img src="29.jpeg" alt="A man sitting on the ground beside a parked motorcycle as a sugarcane truck streaks past, lit tower block behind" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Night Shift</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                    <button class="image-wrapper"><img src="2.jpeg" alt="An older woman leaning at a car window, looking in through the glass" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Eyes in Need</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="fog people">
+                    <button class="image-wrapper"><img src="11.jpeg" alt="A hooded figure in silhouette walking into heavy fog, a second figure barely visible ahead" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Ahead of Me</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                    <button class="image-wrapper"><img src="23.jpeg" alt="A young cotton candy seller turning to look directly at the camera in a crowd" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">The Gaze</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="shapes">
+                    <button class="image-wrapper"><img src="4.jpeg" alt="Looking straight up between two apartment towers, sky cut into a narrow strip" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Between</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                    <button class="image-wrapper"><img src="32.jpeg" alt="Priests holding lamps during an evening ritual, smoke drifting through the light" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Aarti</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shadows motion">
+                    <button class="image-wrapper"><img src="25.jpeg" alt="A man riding a motorcycle across a hard band of sunlight, his shadow thrown long behind him" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Crossing</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="fog people">
+                    <button class="image-wrapper"><img src="27.jpeg" alt="A figure walking away down a fog-filled street between apartment blocks, bare branches in the foreground" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Block by Block</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="shapes">
+                    <button class="image-wrapper"><img src="16.jpeg" alt="A pigeon in silhouette on a wire, wall edge splitting the frame behind it" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">On the Line</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shadows">
+                    <button class="image-wrapper"><img src="24.jpeg" alt="A boy standing in a barbershop doorway, backlit against bright daylight, haircut posters on the dark wall" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Next Customer</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shapes">
+                    <button class="image-wrapper"><img src="14.jpeg" alt="A worker sitting on the edge of a rooftop against an empty grey sky" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">High Work</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                    <button class="image-wrapper"><img src="20.jpeg" alt="A man carrying a tiered oil lamp through a crowd at night, flame rising from the top" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Flame</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shadows">
+                    <button class="image-wrapper"><img src="17.jpeg" alt="Two people walking on paving seen from directly above, their shadows stretched beside them" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Overhead</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="fog people">
+                    <button class="image-wrapper"><img src="26.jpeg" alt="A lone runner on a path in dense fog, seen from a balcony above" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Morning Run</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shapes">
+                    <button class="image-wrapper"><img src="10.jpeg" alt="A monkey mask beside a child holding a smiley-face balloon over his face" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Absurdity</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shadows">
+                    <button class="image-wrapper"><img src="31.jpeg" alt="A man in a striped shirt on the phone, turned away, beside a shuttered storefront" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">On Hold</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="shapes people">
+                    <button class="image-wrapper"><img src="9.jpeg" alt="Looking down between concrete railings at a small figure walking below" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">From the Bridge</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                    <button class="image-wrapper"><img src="5.jpeg" alt="Men performing an evening aarti, incense smoke lit from behind" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Smoke</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shapes">
+                    <button class="image-wrapper"><img src="13.jpeg" alt="Children looking out through the window of a yellow toy train" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Framed</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                <!-- NOTE: this file has a black border baked in. Re-export without it. -->
+                    <button class="image-wrapper"><img src="6.jpeg" alt="An older man in a white turban standing with his arms crossed" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Pillars</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people shadows">
+                    <button class="image-wrapper"><img src="33.jpeg" alt="A man carrying a helmet walking across concrete, long shadows cutting the frame" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Geometry</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                    <button class="image-wrapper"><img src="3.jpeg" alt="A drummer leaning over a dhol tuning the skin over an open flame" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Heat & Sound</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="shapes fog">
+                    <button class="image-wrapper"><img src="1.jpeg" alt="Bamboo stems in silhouette against a hazy sun" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">First Light</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="shadows motion">
+                    <button class="image-wrapper"><img src="18.jpeg" alt="A motorcycle crossing a patch of light, seen from above and blurred by motion" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Kinetic</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+                <div class="gallery-item" data-tags="people">
+                <!-- NOTE: this file has a black border baked in. Re-export without it. -->
+                    <button class="image-wrapper"><img src="8.jpeg" alt="A crowd seated on the ground being served, men moving between the rows" loading="lazy" decoding="async"></button>
+                    <div class="photo-meta"><span class="photo-title">Shared Meal</span><span class="photo-desc">Pune, 2025</span></div>
+                </div>
+
+            </div>
+            <p class="empty-state" id="emptyState" style="display: none;">Nothing tagged here yet.</p>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="tel:+918767350426">Call: +91 87673 50426</a>
+                <a href="https://instagram.com/maitreya_sb" target="_blank" rel="noopener noreferrer">Instagram @maitreya_sb</a>
+                <a href="https://metaleyevisualstudios.com" target="_blank" rel="noopener noreferrer">Metal Eye Visual Studios</a>
+            </div>
+            <p class="footer-copyright">Maitreya Bhagwat &copy; <span id="year">2026</span> // Black &amp; White</p>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        /* ---------- PRELOADER ---------- */
+        const counterElement = document.querySelector('.counter');
+        const preloader = document.getElementById('preloader');
+        let count = 0, pageLoaded = false;
+
+        window.addEventListener('load', () => { pageLoaded = true; });
+
+        const preloadInterval = setInterval(() => {
+            const ceiling = pageLoaded ? 100 : 95;
+            count = Math.min(count + Math.floor(Math.random() * 12) + 3, ceiling);
+            counterElement.textContent = count + '%';
+            if (count >= 100) {
+                clearInterval(preloadInterval);
+                preloader.classList.add('hidden');
+            }
+        }, 50);
+
+        setTimeout(() => {
+            clearInterval(preloadInterval);
+            preloader.classList.add('hidden');
+        }, 6000);
+
+        /* ---------- CUSTOM CURSOR ---------- */
+        const cursor = document.querySelector('.custom-cursor');
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('.image-wrapper, a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+            });
+        }
+
+        /* ---------- FILTERING ---------- */
+        const allItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+        const emptyState = document.getElementById('emptyState');
+        const LAYOUTS = ['layout-a', 'layout-b', 'layout-c', 'layout-d', 'layout-e', 'layout-f'];
+
+        // Show how many photos sit under each tab, calculated from the actual tags
+        filterButtons.forEach(btn => {
+            const filter = btn.dataset.filter;
+            const n = filter === 'all'
+                ? allItems.length
+                : allItems.filter(i => (i.dataset.tags || '').split(/\s+/).includes(filter)).length;
+            btn.insertAdjacentHTML('beforeend', `<span class="filter-count">${n}</span>`);
+        });
+
+        function visibleItems() {
+            return allItems.filter(i => !i.classList.contains('is-hidden'));
+        }
+
+        // Reassign the asymmetric layout by visible position, so no gaps appear
+        function relayout() {
+            visibleItems().forEach((item, i) => {
+                LAYOUTS.forEach(c => item.classList.remove(c));
+                item.classList.add(LAYOUTS[i % LAYOUTS.length]);
+            });
+        }
+
+        function applyFilter(filter) {
+            allItems.forEach(item => {
+                const tags = (item.dataset.tags || '').split(/\s+/);
+                const show = filter === 'all' || tags.includes(filter);
+                item.classList.toggle('is-hidden', !show);
+                // Re-trigger the fade for whatever just appeared
+                if (show) item.classList.remove('in-view');
+            });
+
+            relayout();
+
+            const count = visibleItems().length;
+            emptyState.style.display = count === 0 ? 'block' : 'none';
+
+            // Fade the newly visible set back in
+            requestAnimationFrame(() => {
+                visibleItems().forEach(item => item.classList.add('in-view'));
+            });
+
+            filterButtons.forEach(btn => {
+                btn.setAttribute('aria-pressed', String(btn.dataset.filter === filter));
+            });
+        }
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+        });
+
+        /* ---------- SCROLL FADES (initial load only) ---------- */
+        relayout();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        allItems.forEach(item => observer.observe(item));
+
+        /* ---------- LIGHTBOX ---------- */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const caption = document.getElementById('lightboxCaption');
+        const closeBtn = document.getElementById('closeBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        let lastFocused = null;
+
+        // Arrow keys walk only the photos in the ACTIVE filter, not all of them
+        function activeSet() { return visibleItems(); }
+
+        function render(index) {
+            const set = activeSet();
+            if (!set.length) return;
+            currentIndex = (index + set.length) % set.length;
+            const item = set[currentIndex];
+            const img = item.querySelector('img');
+            const title = item.querySelector('.photo-title').textContent;
+            const desc = item.querySelector('.photo-desc').textContent;
+
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            caption.textContent = `${title} — ${desc}   (${currentIndex + 1}/${set.length})`;
+        }
+
+        function openLightbox(item) {
+            lastFocused = document.activeElement;
+            render(activeSet().indexOf(item));
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
+        }
+
+        allItems.forEach(item => {
+            item.querySelector('.image-wrapper')
+                .addEventListener('click', () => openLightbox(item));
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', () => render(currentIndex - 1));
+        nextBtn.addEventListener('click', () => render(currentIndex + 1));
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') render(currentIndex - 1);
+            if (e.key === 'ArrowRight') render(currentIndex + 1);
+        });
+
+        /* ---------- FOOTER YEAR ---------- */
+        document.getElementById('year').textContent = new Date().getFullYear();
+    });
+    </script>
+</body>
+</html>
