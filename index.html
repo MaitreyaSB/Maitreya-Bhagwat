@@ -127,7 +127,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .row.full figcaption{padding-left:var(--gut);padding-right:var(--gut)}
 @media (hover:hover) and (pointer:fine){
   .frame:hover img{filter:none;transform:scale(1.012)}   /* hover reveals the photo as shot */
-  .frame{cursor:pointer}
+  .frame{cursor:none}
 }
 figcaption{display:flex;align-items:baseline;gap:14px;margin-top:14px;color:var(--ink-3)}
 figcaption .no{color:var(--ink-3)}
@@ -185,6 +185,14 @@ footer{border-top:1px solid var(--rule);padding:clamp(72px,12vw,180px) var(--gut
 .v-cap{padding:14px var(--gut) calc(20px + env(safe-area-inset-bottom));display:flex;gap:14px;justify-content:center;flex-wrap:wrap;color:var(--ink-3);text-align:center}
 .v-cap b{font-weight:400;color:var(--ink)}
 
+/* ---------- cursor ring ---------- */
+.ring{position:fixed;left:0;top:0;z-index:300;pointer-events:none;width:12px;height:12px;border:1px solid #fff;border-radius:50%;
+  transform:translate(-50%,-50%);mix-blend-mode:difference;display:none;align-items:center;justify-content:center;
+  transition:width .45s var(--ease),height .45s var(--ease),background-color .3s}
+.ring span{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#000;opacity:0;transition:opacity .3s}
+.ring.big{width:84px;height:84px;background:#fff}
+.ring.big span{opacity:1}
+@media (hover:hover) and (pointer:fine){.ring{display:flex}}
 
 /* ---------- small screens ---------- */
 @media (max-width:820px){
@@ -202,6 +210,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(72px,12vw,180px) var(--gut
   .spread{flex-direction:column;gap:44px}
   .spread .plate{flex:none;width:100%}
   figcaption{flex-wrap:wrap;gap:4px 12px}
+  .frame{cursor:auto}
   .v-stage{padding:0 8px}
   .v-nav{display:none}
 }
@@ -217,6 +226,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(72px,12vw,180px) var(--gut
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+<div class="ring" id="ring" aria-hidden="true"><span>View</span></div>
 
 <nav class="nav" aria-label="Main">
   <a class="brand" href="#top">M. Bhagwat</a>
@@ -594,6 +604,16 @@ footer{border-top:1px solid var(--rule);padding:clamp(72px,12vw,180px) var(--gut
     });
   }
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- cursor ring ---- */
+  var ring=$('#ring');
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var rx=0,ry=0,tx=0,ty=0,run=false;
+    addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;if(!run){run=true;requestAnimationFrame(loop)}});
+    function loop(){rx+=(tx-rx)*.22;ry+=(ty-ry)*.22;ring.style.left=rx+'px';ring.style.top=ry+'px';
+      if(Math.abs(tx-rx)>.1||Math.abs(ty-ry)>.1) requestAnimationFrame(loop); else run=false}
+    document.addEventListener('mouseover',function(e){var t=e.target.closest&&e.target.closest('.frame,.thumb');ring.classList.toggle('big',!!t)});
+  }
 
   /* ---- viewer ---- */
   var viewer=$('#viewer'),vImg=$('#vImg'),vCap=$('#vCap'),vCount=$('#vCount'),vStage=$('#vStage');
