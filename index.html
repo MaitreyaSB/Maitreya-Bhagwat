@@ -1,632 +1,660 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <title>Maitreya Bhagwat | Black &amp; White Photography</title>
+<title>Maitreya Bhagwat — Photographs</title>
+<meta name="description" content="Black-and-white photographs from Maharashtra, India — street, ritual, light and fog. Personal work by Maitreya Bhagwat.">
+<link rel="canonical" href="https://maitreyasb.github.io/Maitreya-Bhagwat/">
 
-    <meta name="description" content="Black-and-white photography from Maharashtra, India — street, documentary, ritual and architecture. Personal work by Maitreya Bhagwat.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maitreyasb.github.io/Maitreya-Bhagwat/">
+<meta property="og:title" content="Maitreya Bhagwat — Photographs">
+<meta property="og:description" content="Street, ritual, light and fog in black and white. Maharashtra, India.">
+<meta property="og:image" content="https://maitreyasb.github.io/Maitreya-Bhagwat/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#080808">
+<meta name="color-scheme" content="dark">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://maitreyasb.github.io/Maitreya-Bhagwat/">
-    <meta property="og:title" content="Maitreya Bhagwat | Black &amp; White Photography">
-    <meta property="og:description" content="Street, documentary, ritual and architecture in black and white.">
-    <meta property="og:image" content="https://maitreyasb.github.io/Maitreya-Bhagwat/22.jpeg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#030303">
+<link rel="icon" type="image/png" href="favicon.png">
 
-    <link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Maitreya Bhagwat",
+  "jobTitle": "Photographer",
+  "url": "https://maitreyasb.github.io/Maitreya-Bhagwat/",
+  "sameAs": ["https://instagram.com/maitreya_sb", "https://metaleyevisualstudios.com"]
+}
+</script>
 
-    <style>
-        :root {
-            --bg-color: #030303;
-            --text-color: #f0f0f0;
-            --accent-color: #333333;
-            --meta-color: #888888;
-        }
+<style>
+:root{
+  --bg:#080808;
+  --ink:#ece8e0;          /* warm paper white */
+  --ink-2:#b4afa6;
+  --ink-3:#7d7a73;
+  --rule:#242321;
+  --gut:clamp(16px,4vw,64px);
+  --serif:'Instrument Serif','Times New Roman',serif;
+  --mono:'DM Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.25rem;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+::selection{background:var(--ink);color:var(--bg)}
+.mono,.nav a,.range,figcaption,.chip,.v-count,.v-cap,.foot-links a,.hero-meta,.kicker{font-family:var(--mono);font-size:.7rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0; padding: 0;
-            overflow-x: hidden;
-        }
+/* ---------- film grain (static, subtle) ---------- */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.055;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid #fff;
-            outline-offset: 4px;
-        }
+/* ---------- progress hairline ---------- */
+.progress{position:fixed;top:0;left:0;height:1px;width:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);z-index:100;opacity:.7}
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-            .gallery-item { opacity: 1 !important; transform: none !important; }
-        }
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:baseline;
+  padding:calc(18px + env(safe-area-inset-top)) var(--gut) 18px;color:#fff;mix-blend-mode:difference;pointer-events:none}
+.nav > *{pointer-events:auto}
+.nav .brand{text-decoration:none;font-family:var(--serif);font-size:1.25rem;letter-spacing:0;text-transform:none;font-style:italic}
+.nav ul{display:flex;gap:clamp(14px,3vw,40px);list-style:none;margin:0;padding:0}
+.nav a{text-decoration:none;position:relative;padding:4px 0}
+.nav ul a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+.nav ul a:hover::after{transform:scaleX(1)}
 
-        .film-grain {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 9999; opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#000}
+.hero .hero-plate{position:absolute;inset:0;margin:0}
+.hero .frame{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:grayscale(1) contrast(1.08) brightness(.82);
+  transform:scale(1.06);opacity:0;transition:opacity 2.2s var(--ease) .1s,transform 6s var(--ease) .1s,filter 1s ease}
+.loaded .hero .frame img{opacity:1;transform:scale(1)}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,rgba(8,8,8,.25) 38%,rgba(8,8,8,.35) 100%)}
+.hero-copy{position:absolute;left:var(--gut);right:var(--gut);bottom:clamp(28px,6vh,64px);z-index:2;pointer-events:none}
+.hero h1{margin:0;font-weight:400;font-size:clamp(3.6rem,13.5vw,13rem);line-height:.84;letter-spacing:-.025em}
+.hero h1 span{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 span i{display:block;transform:translateY(105%);transition:transform 1.4s var(--ease)}
+.loaded .hero h1 span i{transform:none}
+.hero h1 span:nth-child(2){padding-left:.9em}
+.hero h1 span:nth-child(2) i{font-style:italic;transition-delay:.12s}
+.hero-meta{display:flex;justify-content:space-between;gap:24px;margin-top:clamp(20px,4vh,40px);color:var(--ink-2);opacity:0;transition:opacity 1.6s ease .9s}
+.loaded .hero-meta{opacity:1}
+.hero-plate figcaption{display:none}
+.scroll-cue{position:absolute;right:var(--gut);top:50%;z-index:2;writing-mode:vertical-rl;transform:translateY(-50%);color:var(--ink-2);font-family:var(--mono);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;pointer-events:none}
 
-        @media (hover: hover) and (pointer: fine) {
-            * { cursor: none !important; }
-            .custom-cursor {
-                position: fixed; top: 0; left: 0;
-                width: 15px; height: 15px;
-                border: 2px solid #fff; border-radius: 50%;
-                transform: translate(-50%, -50%);
-                pointer-events: none; z-index: 10000;
-                transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
-                mix-blend-mode: difference;
-            }
-            .custom-cursor.hovering { width: 60px; height: 60px; background-color: rgba(255,255,255,0.1); }
-        }
+/* ---------- statement ---------- */
+.statement{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(12px,2vw,32px);padding:clamp(88px,16vw,220px) var(--gut) clamp(72px,12vw,180px);max-width:1680px;margin:0 auto}
+.kicker{grid-column:1/-1;color:var(--ink-3);margin-bottom:clamp(28px,4vw,56px)}
+.pull{grid-column:1/8;margin:0;font-style:italic;font-weight:400;font-size:clamp(2.6rem,7.4vw,7.6rem);line-height:.98;letter-spacing:-.02em}
+.prose{grid-column:8/13;align-self:end;color:var(--ink-2);font-size:clamp(1.1rem,1.5vw,1.4rem);line-height:1.55}
+.prose p{margin:0 0 1.1em}
+.prose a{border-bottom:1px solid var(--ink-3);text-decoration:none;transition:border-color .3s,color .3s}
+.prose a:hover{color:var(--ink);border-color:var(--ink)}
 
-        /* PRELOADER */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: var(--bg-color); z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-        #preloader.hidden { opacity: 0; visibility: hidden; }
-        .counter { font-family: 'Space Mono', monospace; font-size: 2.5rem; color: #fff; letter-spacing: 2px; }
+/* ---------- chapters ---------- */
+.chapter{padding-bottom:clamp(64px,10vw,160px)}
+.chapter-head{display:grid;grid-template-columns:auto 1fr auto;align-items:end;column-gap:clamp(18px,3vw,48px);
+  padding:clamp(40px,6vw,96px) var(--gut) clamp(32px,5vw,72px);margin:0 auto;max-width:1680px;border-top:1px solid var(--rule)}
+.numeral{font-style:italic;font-size:clamp(3.4rem,9vw,8.5rem);line-height:.8;color:var(--ink-3);min-width:1.3em}
+.chapter h2{margin:0;font-weight:400;font-size:clamp(2.2rem,5.6vw,5.4rem);line-height:.95;letter-spacing:-.02em}
+.note{margin:.55em 0 0;color:var(--ink-3);font-style:italic;font-size:clamp(1rem,1.3vw,1.25rem)}
+.range{color:var(--ink-3);white-space:nowrap}
 
-        /* LIGHTBOX */
-        #lightbox {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: rgba(3,3,3,0.98); z-index: 9998;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-        }
-        #lightbox.active { opacity: 1; pointer-events: all; }
-        /* The grid stays black-and-white until hover. The lightbox always shows the
-           photo as shot — this is how the colour frames reach phone users, who have
-           no pointer to hover with. Delete these two lines to disable. */
-        #lightbox img { filter: none !important; }
+.row,.spread{margin:0 auto clamp(56px,9vw,150px)}
+.row.full{margin-bottom:clamp(56px,9vw,150px)}
+.row.wide{width:min(1280px,calc(100% - 2*var(--gut)))}
+.row.right{width:min(1280px,calc(100% - 2*var(--gut)))}
+.row.right .plate{width:52%;margin-left:auto}
+.spread{display:flex;gap:clamp(12px,2.4vw,40px);align-items:flex-start;width:min(1480px,calc(100% - 2*var(--gut)))}
+.spread .plate{flex:var(--ar) 1 0%;min-width:0}
 
-        #lightbox img {
-            max-width: 90vw; max-height: 80vh; object-fit: contain;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5); border: 1px solid #222;
-        }
-        .lightbox-caption {
-            position: absolute; bottom: 4vh; left: 0; right: 0;
-            text-align: center; font-family: 'Space Mono', monospace;
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--meta-color); padding: 0 5vw;
-        }
-        .close-btn, .nav-btn {
-            position: absolute; background: none; border: none; color: #fff;
-            font-family: 'Space Mono', monospace; font-size: 1.2rem;
-            text-transform: uppercase; padding: 10px;
-        }
-        .close-btn { top: 30px; right: 40px; }
-        .nav-btn { top: 50%; transform: translateY(-50%); font-size: 1.6rem; opacity: 0.6; transition: opacity 0.3s; }
-        .nav-btn:hover { opacity: 1; }
-        #prevBtn { left: 2vw; }
-        #nextBtn { right: 2vw; }
+.plate{margin:0;position:relative}
+.frame{display:block;width:100%;overflow:hidden;background:#0d0d0d;position:relative}
+.frame img{width:100%;height:auto;filter:grayscale(1) contrast(1.1);transition:filter 1s ease,transform 1.4s var(--ease)}
+.row.full .frame{background:#000}
+.row.full .frame img{max-height:100vh;max-height:100svh;object-fit:contain}
+.row.full figcaption{padding-left:var(--gut);padding-right:var(--gut)}
+@media (hover:hover) and (pointer:fine){
+  .frame:hover img{filter:none;transform:scale(1.012)}   /* hover reveals the photo as shot */
+  .frame{cursor:pointer}
+}
+figcaption{display:flex;align-items:baseline;gap:14px;margin-top:14px;color:var(--ink-3)}
+figcaption .no{color:var(--ink-3)}
+figcaption .ttl{color:var(--ink);}
+figcaption .loc{margin-left:auto;text-align:right}
 
-        /* HEADER */
-        .container { max-width: 1400px; margin: 0 auto; padding: 8vw 4vw; }
-        header { margin-bottom: 8vh; display: flex; flex-direction: column; align-items: flex-start; }
-        h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(3.5rem, 8vw, 9rem);
-            text-transform: uppercase; line-height: 1.1;
-            margin: 0 0 2rem 0; letter-spacing: 4px;
-        }
-        .about-text {
-            font-family: 'Space Mono', monospace;
-            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
-            max-width: 650px; color: #a0a0a0; line-height: 1.8;
-            margin-left: 2vw; border-left: 2px solid var(--accent-color); padding-left: 20px;
-        }
+/* scroll reveal */
+.js .plate:not(.hero-plate){opacity:0;transform:translateY(28px);transition:opacity 1.3s var(--ease),transform 1.3s var(--ease)}
+.js .plate.in{opacity:1;transform:none}
+.js .chapter-head{opacity:0;transform:translateY(20px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.js .chapter-head.in{opacity:1;transform:none}
 
-        /* FILTER BAR */
-        .filter-bar {
-            display: flex; flex-wrap: wrap; gap: 2.5vw;
-            margin-bottom: 10vh; padding-bottom: 20px;
-            border-bottom: 1px solid var(--accent-color);
-            font-family: 'Space Mono', monospace;
-        }
-        .filter-btn {
-            background: none; border: none; padding: 6px 0;
-            color: var(--meta-color);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
-            position: relative; transition: color 0.3s ease;
-        }
-        .filter-btn::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 0%; height: 1px; background-color: #fff; transition: width 0.3s ease;
-        }
-        .filter-btn:hover { color: var(--text-color); }
-        .filter-btn[aria-pressed="true"] { color: #fff; }
-        .filter-btn[aria-pressed="true"]::after { width: 100%; }
-        .filter-count { font-size: 0.65rem; color: var(--accent-color); margin-left: 6px; vertical-align: super; }
+/* ---------- index ---------- */
+.index{padding:clamp(64px,10vw,150px) var(--gut) clamp(64px,10vw,140px);max-width:1680px;margin:0 auto;border-top:1px solid var(--rule)}
+.index-top{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,4vw,56px)}
+.index h2{margin:0;font-weight:400;font-style:italic;font-size:clamp(2.6rem,7vw,6.6rem);line-height:.9;letter-spacing:-.02em}
+.chips{display:flex;flex-wrap:wrap;gap:6px 22px}
+.chip{color:var(--ink-3);padding:6px 0;position:relative;transition:color .3s}
+.chip sup{font-size:.85em;margin-left:4px;opacity:.7}
+.chip::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ease)}
+.chip:hover{color:var(--ink)}
+.chip[aria-pressed="true"]{color:var(--ink)}
+.chip[aria-pressed="true"]::after{transform:scaleX(1)}
+.sheet{display:flex;flex-wrap:wrap;gap:clamp(6px,.8vw,12px)}
+.sheet::after{content:'';flex-grow:1000}
+.thumb{--h:clamp(96px,13vw,190px);height:var(--h);aspect-ratio:var(--ar);flex-grow:calc(var(--ar)*100);position:relative;background:#111;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);opacity:.82;transition:opacity .5s,filter .6s,transform 1s var(--ease)}
+.thumb:hover img,.thumb:focus-visible img{opacity:1;transform:scale(1.04)}
+@media (hover:hover){.thumb:hover img{filter:none}}
+.thumb .n{position:absolute;left:8px;bottom:6px;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:#fff;mix-blend-mode:difference}
+.thumb.is-off{display:none}
 
-        /* GALLERY */
-        .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2vw; align-items: start; }
-        .gallery-item {
-            display: flex; flex-direction: column; gap: 12px;
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gallery-item.in-view { opacity: 1; transform: translateY(0); }
-        .gallery-item.is-hidden { display: none; }
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--rule);padding:clamp(72px,12vw,180px) var(--gut) clamp(32px,5vw,56px);max-width:1680px;margin:0 auto}
+.foot-big{margin:0 0 clamp(40px,7vw,110px);font-weight:400;font-style:italic;font-size:clamp(2.8rem,9.5vw,10rem);line-height:.92;letter-spacing:-.025em}
+.foot-big a{text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .7s var(--ease)}
+.foot-big a:hover{background-size:100% 1px}
+.foot-links{display:flex;flex-wrap:wrap;gap:12px clamp(24px,4vw,64px);margin-bottom:clamp(48px,8vw,120px)}
+.foot-links a{text-decoration:none;color:var(--ink-2);padding-bottom:4px;border-bottom:1px solid var(--rule);transition:color .3s,border-color .3s}
+.foot-links a:hover{color:var(--ink);border-color:var(--ink)}
+.copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--ink-3);font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase}
 
-        .image-wrapper {
-            position: relative; width: 100%; overflow: hidden;
-            background-color: #0b0b0b;
-            outline: 1px solid #1a1a1a; outline-offset: 4px;
-            margin-bottom: 4px; border: none; padding: 0; display: block;
-        }
-        .image-wrapper img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            filter: grayscale(100%) contrast(110%);
-            transition: filter 0.8s ease, transform 0.8s ease;
-        }
-        .image-wrapper:hover img { filter: grayscale(0%) contrast(100%); transform: scale(1.02); }
+/* ---------- viewer ---------- */
+#viewer{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.985);display:grid;grid-template-rows:auto 1fr auto;
+  opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s}
+#viewer.open{opacity:1;visibility:visible}
+.v-top{display:flex;justify-content:space-between;align-items:center;padding:calc(18px + env(safe-area-inset-top)) var(--gut) 12px;color:var(--ink-2)}
+.v-top button{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 0;color:var(--ink)}
+.v-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 clamp(44px,7vw,110px)}
+.v-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;opacity:0;transition:opacity .45s ease;touch-action:pan-y}
+.v-stage img.ready{opacity:1}
+.v-nav{position:absolute;top:0;bottom:0;width:clamp(44px,7vw,110px);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1.3rem;color:var(--ink-3);transition:color .3s}
+.v-nav:hover{color:var(--ink)}
+.v-prev{left:0}.v-next{right:0}
+.v-cap{padding:14px var(--gut) calc(20px + env(safe-area-inset-bottom));display:flex;gap:14px;justify-content:center;flex-wrap:wrap;color:var(--ink-3);text-align:center}
+.v-cap b{font-weight:400;color:var(--ink)}
 
-        /*
-          LAYOUT PATTERNS
-          These are applied by JavaScript based on each photo's position among the
-          CURRENTLY VISIBLE items. That's what keeps the asymmetric grid from
-          collapsing into holes when you switch tabs. Don't put them in the HTML.
-        */
-        .layout-a { grid-column: 2 / 12; margin-bottom: 5vh; }
-        .layout-a .image-wrapper { aspect-ratio: 16 / 9; }
-        .layout-b { grid-column: 1 / 6; }
-        .layout-b .image-wrapper { aspect-ratio: 4 / 5; }
-        .layout-c { grid-column: 6 / 13; margin-top: 10vh; }
-        .layout-c .image-wrapper { aspect-ratio: 3 / 2; }
-        .layout-d { grid-column: 4 / 10; margin: 10vh 0; }
-        .layout-d .image-wrapper { aspect-ratio: 1 / 1; }
-        .layout-e { grid-column: 2 / 6; }
-        .layout-e .image-wrapper { aspect-ratio: 4 / 5; }
-        .layout-f { grid-column: 8 / 12; margin-top: -10vh; }
-        .layout-f .image-wrapper { aspect-ratio: 3 / 4; }
 
-        .photo-meta {
-            display: flex; justify-content: space-between; align-items: baseline;
-            font-family: 'Space Mono', monospace; font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;
-        }
-        .photo-title { color: #d0d0d0; font-weight: 700; }
-        .photo-desc { color: var(--meta-color); text-align: right; max-width: 50%; }
-
-        .empty-state {
-            grid-column: 1 / -1; text-align: center; padding: 15vh 0;
-            font-family: 'Space Mono', monospace; color: var(--meta-color);
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 15vh; padding: 60px 0; text-align: center;
-            font-family: 'Space Mono', monospace; font-size: 0.8rem;
-            text-transform: uppercase; border-top: 1px solid var(--accent-color);
-        }
-        .footer-links { display: flex; justify-content: center; gap: 4vw; margin-bottom: 30px; }
-        .footer-links a { color: #fff; text-decoration: none; letter-spacing: 1px; position: relative; padding-bottom: 4px; }
-        .footer-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 0%; height: 1px; background-color: #fff; transition: width 0.3s ease;
-        }
-        .footer-links a:hover::after { width: 100%; }
-        .footer-copyright { color: var(--accent-color); }
-
-        /* Opt a single photo out of the black-and-white filter */
-        .no-grayscale img,
-        .no-grayscale:hover img { filter: none !important; }
-
-        @media (max-width: 768px) {
-            .gallery { display: flex; flex-direction: column; gap: 60px; }
-            .gallery-item { width: 100%; margin: 0 !important; }
-            .image-wrapper { aspect-ratio: 4/5 !important; outline: none; }
-            .layout-a .image-wrapper { aspect-ratio: 3/2 !important; }
-            .photo-meta { flex-direction: column; gap: 4px; }
-            .photo-desc { text-align: left; max-width: 100%; }
-            .filter-bar { gap: 5vw; margin-bottom: 8vh; }
-            .filter-btn { font-size: 0.75rem; letter-spacing: 1px; }
-            .footer-links { flex-direction: column; gap: 15px; }
-            .nav-btn { font-size: 1.2rem; }
-            #prevBtn { left: 0; }
-            #nextBtn { right: 0; }
-        }
-    </style>
+/* ---------- small screens ---------- */
+@media (max-width:820px){
+  body{font-size:1.1rem}
+  .nav .brand{font-size:1.1rem}
+  .nav{mix-blend-mode:normal;background:linear-gradient(to bottom,rgba(8,8,8,.94) 40%,rgba(8,8,8,0))}
+  .scroll-cue{display:none}
+  .hero h1 span:nth-child(2){padding-left:.4em}
+  .hero-meta{flex-direction:column;gap:6px}
+  .statement{display:block}
+  .pull{margin-bottom:40px}
+  .chapter-head{grid-template-columns:auto 1fr;row-gap:14px}
+  .range{grid-column:1/-1}
+  .row.right .plate{width:100%}
+  .spread{flex-direction:column;gap:44px}
+  .spread .plate{flex:none;width:100%}
+  figcaption{flex-wrap:wrap;gap:4px 12px}
+  .v-stage{padding:0 8px}
+  .v-nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .plate,.js .chapter-head{opacity:1!important;transform:none!important}
+  .hero .frame img,.hero h1 span i,.hero-meta{opacity:1!important;transform:none!important}
+}
+</style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js')</script>
 
-    <div class="custom-cursor" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
-    <div id="preloader"><div class="counter">0%</div></div>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="#top">M. Bhagwat</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#index">Index</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photograph">
-        <button class="close-btn" id="closeBtn" aria-label="Close">[ CLOSE ]</button>
-        <button class="nav-btn" id="prevBtn" aria-label="Previous photograph">&#8592;</button>
-        <img src="" alt="">
-        <button class="nav-btn" id="nextBtn" aria-label="Next photograph">&#8594;</button>
-        <p class="lightbox-caption" id="lightboxCaption"></p>
+<!--
+  =====================================================================
+  HOW THIS PAGE IS PUT TOGETHER (so you can edit it by hand)
+  ---------------------------------------------------------------------
+  Every photograph is one <figure class="plate"> block:
+
+    <figure class="plate" data-tags="people shadows" style="--ar:1.5">
+      <button class="frame" type="button" aria-label="View TITLE full screen">
+        <img src="FILE.jpeg" width="W" height="H" alt="WHAT IS IN THE FRAME" loading="lazy" decoding="async">
+      </button>
+      <figcaption><span class="no">00</span><span class="ttl">TITLE</span><span class="loc">PLACE, YEAR</span></figcaption>
+    </figure>
+
+  --ar is width divided by height of the file (1800 x 1202 = 1.4975).
+  data-tags can be any of: people shapes shadows fog places motion.
+  Plates sit inside a <div class="row wide|full|right"> (one photo)
+  or a <div class="spread"> (two photos side by side, same height).
+  The Index, the full-screen viewer and the arrow keys all pick up
+  new plates automatically. A small copy in /thumbs/ (same file name)
+  makes the Index load faster; without it the full file is used.
+  =====================================================================
+-->
+
+<header class="hero" id="top">
+  <figure class="plate hero-plate" data-tags="people motion" style="--ar:1.4988">
+    <button class="frame" type="button" aria-label="View Carrying Water full screen"><img src="22.jpeg" width="1280" height="854" alt="A man walking with a steel bucket, panned so the background streaks and he stays sharp" fetchpriority="high"></button>
+    <figcaption><span class="no">01</span><span class="ttl">Carrying Water</span><span class="loc">Pune, 2025</span></figcaption>
+  </figure>
+  <div class="hero-copy">
+    <h1><span><i>Maitreya</i></span><span><i>Bhagwat</i></span></h1>
+    <div class="hero-meta"><span>Photographs &mdash; Maharashtra, India</span><span>Selected work 2025&ndash;2026</span></div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+</header>
+
+<section class="statement" id="about" aria-label="About">
+  <p class="kicker">About</p>
+  <p class="pull">Whatever holds still long&nbsp;enough.</p>
+  <div class="prose">
+    <p>Photographer based in Maharashtra. I picked up my uncle&rsquo;s bridge camera at 14 and found my footing in black-and-white street and documentary work.</p>
+    <p>It has spread out since then &mdash; ritual, architecture, whatever holds still long enough. This is the personal work. On the commercial side I run <a href="https://metaleyevisualstudios.com" target="_blank" rel="noopener noreferrer">Metal Eye Visual Studios</a> for industrial and product photography.</p>
+    <p>Six years in, still shooting every week.</p>
+  </div>
+</section>
+
+<main id="work">
+
+<section class="chapter" id="street" aria-labelledby="street-h">
+  <header class="chapter-head">
+    <span class="numeral" aria-hidden="true">I</span>
+    <div>
+      <h2 id="street-h">Street</h2>
+      <p class="note">People, held for a moment.</p>
     </div>
+    <span class="range">Plates 02&ndash;08</span>
+  </header>
+<div class="spread">
+<figure class="plate" data-tags="people motion" style="--ar:0.7656">
+  <button class="frame" type="button" aria-label="View Night Shift full screen"><img src="29.jpeg" width="980" height="1280" alt="A man sitting on the ground beside a parked motorcycle as a sugarcane truck streaks past, lit tower block behind" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">02</span><span class="ttl">Night Shift</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="people" style="--ar:1.4988">
+  <button class="frame" type="button" aria-label="View The Gaze full screen"><img src="23.jpeg" width="1280" height="854" alt="A young cotton candy seller turning to look directly at the camera in a crowd" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">03</span><span class="ttl">The Gaze</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row right">
+<figure class="plate" data-tags="people" style="--ar:0.7648">
+  <button class="frame" type="button" aria-label="View Eyes in Need full screen"><img src="2.jpeg" width="979" height="1280" alt="An older woman leaning at a car window, looking in through the glass" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">04</span><span class="ttl">Eyes in Need</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="people shapes" style="--ar:1.4988">
+  <button class="frame" type="button" aria-label="View Absurdity full screen"><img src="10.jpeg" width="1280" height="854" alt="A monkey mask beside a child holding a smiley-face balloon over his face" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">05</span><span class="ttl">Absurdity</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="people" style="--ar:0.9701">
+  <button class="frame" type="button" aria-label="View Pillars full screen"><img src="6.jpeg" width="909" height="937" alt="An older man in a white turban standing with his arms crossed" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">06</span><span class="ttl">Pillars</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="people shapes" style="--ar:1.4988">
+  <button class="frame" type="button" aria-label="View Framed full screen"><img src="13.jpeg" width="1280" height="854" alt="Children looking out through the window of a yellow toy train" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">07</span><span class="ttl">Framed</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row full">
+<figure class="plate" data-tags="people shapes" style="--ar:1.4963">
+  <button class="frame" type="button" aria-label="View High Work full screen"><img src="14.jpeg" width="1616" height="1080" alt="A worker sitting on the edge of a rooftop against an empty grey sky" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">08</span><span class="ttl">High Work</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+</section>
 
-    <div class="film-grain" aria-hidden="true"></div>
-
-    <div class="container">
-        <header>
-            <h1>Maitreya<br>Bhagwat</h1>
-            <p class="about-text">
-                Photographer based in Maharashtra. I picked up my uncle's bridge camera at 14 and found my footing in black-and-white street and documentary work.
-                <br><br>
-                It has spread out since then — ritual, architecture, whatever holds still long enough. This is the personal work. On the commercial side I run Metal Eye Visual Studios for industrial and product photography.
-                <br><br>
-                Six years in, still shooting every week.
-            </p>
-        </header>
-
-        <!-- FILTER BAR: counts are calculated automatically, don't hardcode them -->
-        <nav class="filter-bar" aria-label="Filter photographs by subject">
-            <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
-            <!-- People holds 22 of 26 frames, so this tab barely filters anything.
-                 Delete this one line if you'd rather it didn't. -->
-            <button class="filter-btn" data-filter="people" aria-pressed="false">People</button>
-            <button class="filter-btn" data-filter="shapes" aria-pressed="false">Shapes</button>
-            <button class="filter-btn" data-filter="shadows" aria-pressed="false">Shadows</button>
-            <button class="filter-btn" data-filter="fog" aria-pressed="false">Fog</button>
-            <button class="filter-btn" data-filter="motion" aria-pressed="false">Motion</button>
-        </nav>
-
-        <main>
-            <!--
-              ============================================================
-              HOW TO ADD A PHOTO
-              ============================================================
-              Copy the block below, paste it anywhere inside <div class="gallery">,
-              and fill in the four things marked. Nothing else needs changing —
-              the layout, filtering and lightbox all pick it up automatically.
-
-              <div class="gallery-item" data-tags="people shadows">
-                  <button class="image-wrapper">
-                      <img src="FILENAME.jpg" alt="PLAIN DESCRIPTION OF WHAT'S IN THE FRAME" loading="lazy" decoding="async">
-                  </button>
-                  <div class="photo-meta">
-                      <span class="photo-title">TITLE</span>
-                      <span class="photo-desc">PLACE, YEAR</span>
-                  </div>
-              </div>
-
-              data-tags takes ANY combination, space-separated:
-                  people  shadows  shapes  motion
-              A photo with data-tags="people shadows" shows up under both.
-              A photo needs at least one tag or it'll only appear under "All".
-
-              Order in this file = order on the page. Put your strongest frame first.
-              ============================================================
-            -->
-            <div class="gallery" id="gallery">
-
-                <div class="gallery-item" data-tags="people motion">
-                    <button class="image-wrapper"><img src="22.jpeg" alt="A man walking with a steel bucket, panned so the background streaks and he stays sharp" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Carrying Water</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people motion">
-                    <button class="image-wrapper"><img src="29.jpeg" alt="A man sitting on the ground beside a parked motorcycle as a sugarcane truck streaks past, lit tower block behind" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Night Shift</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                    <button class="image-wrapper"><img src="2.jpeg" alt="An older woman leaning at a car window, looking in through the glass" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Eyes in Need</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="fog people">
-                    <button class="image-wrapper"><img src="11.jpeg" alt="A hooded figure in silhouette walking into heavy fog, a second figure barely visible ahead" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Ahead of Me</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                    <button class="image-wrapper"><img src="23.jpeg" alt="A young cotton candy seller turning to look directly at the camera in a crowd" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">The Gaze</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="shapes">
-                    <button class="image-wrapper"><img src="4.jpeg" alt="Looking straight up between two apartment towers, sky cut into a narrow strip" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Between</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                    <button class="image-wrapper"><img src="32.jpeg" alt="Priests holding lamps during an evening ritual, smoke drifting through the light" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Aarti</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shadows motion">
-                    <button class="image-wrapper"><img src="25.jpeg" alt="A man riding a motorcycle across a hard band of sunlight, his shadow thrown long behind him" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Crossing</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="fog people">
-                    <button class="image-wrapper"><img src="27.jpeg" alt="A figure walking away down a fog-filled street between apartment blocks, bare branches in the foreground" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Block by Block</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="shapes">
-                    <button class="image-wrapper"><img src="16.jpeg" alt="A pigeon in silhouette on a wire, wall edge splitting the frame behind it" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">On the Line</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shadows">
-                    <button class="image-wrapper"><img src="24.jpeg" alt="A boy standing in a barbershop doorway, backlit against bright daylight, haircut posters on the dark wall" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Next Customer</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shapes">
-                    <button class="image-wrapper"><img src="14.jpeg" alt="A worker sitting on the edge of a rooftop against an empty grey sky" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">High Work</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                    <button class="image-wrapper"><img src="20.jpeg" alt="A man carrying a tiered oil lamp through a crowd at night, flame rising from the top" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Flame</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shadows">
-                    <button class="image-wrapper"><img src="17.jpeg" alt="Two people walking on paving seen from directly above, their shadows stretched beside them" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Overhead</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="fog people">
-                    <button class="image-wrapper"><img src="26.jpeg" alt="A lone runner on a path in dense fog, seen from a balcony above" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Morning Run</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shapes">
-                    <button class="image-wrapper"><img src="10.jpeg" alt="A monkey mask beside a child holding a smiley-face balloon over his face" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Absurdity</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shadows">
-                    <button class="image-wrapper"><img src="31.jpeg" alt="A man in a striped shirt on the phone, turned away, beside a shuttered storefront" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">On Hold</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="shapes people">
-                    <button class="image-wrapper"><img src="9.jpeg" alt="Looking down between concrete railings at a small figure walking below" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">From the Bridge</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                    <button class="image-wrapper"><img src="5.jpeg" alt="Men performing an evening aarti, incense smoke lit from behind" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Smoke</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shapes">
-                    <button class="image-wrapper"><img src="13.jpeg" alt="Children looking out through the window of a yellow toy train" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Framed</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                <!-- NOTE: this file has a black border baked in. Re-export without it. -->
-                    <button class="image-wrapper"><img src="6.jpeg" alt="An older man in a white turban standing with his arms crossed" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Pillars</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people shadows">
-                    <button class="image-wrapper"><img src="33.jpeg" alt="A man carrying a helmet walking across concrete, long shadows cutting the frame" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Geometry</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                    <button class="image-wrapper"><img src="3.jpeg" alt="A drummer leaning over a dhol tuning the skin over an open flame" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Heat & Sound</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="shapes fog">
-                    <button class="image-wrapper"><img src="1.jpeg" alt="Bamboo stems in silhouette against a hazy sun" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">First Light</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="shadows motion">
-                    <button class="image-wrapper"><img src="18.jpeg" alt="A motorcycle crossing a patch of light, seen from above and blurred by motion" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Kinetic</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-                <div class="gallery-item" data-tags="people">
-                <!-- NOTE: this file has a black border baked in. Re-export without it. -->
-                    <button class="image-wrapper"><img src="8.jpeg" alt="A crowd seated on the ground being served, men moving between the rows" loading="lazy" decoding="async"></button>
-                    <div class="photo-meta"><span class="photo-title">Shared Meal</span><span class="photo-desc">Pune, 2025</span></div>
-                </div>
-
-            </div>
-            <p class="empty-state" id="emptyState" style="display: none;">Nothing tagged here yet.</p>
-        </main>
-
-        <footer>
-            <div class="footer-links">
-                <a href="tel:+918767350426">Call: +91 87673 50426</a>
-                <a href="https://instagram.com/maitreya_sb" target="_blank" rel="noopener noreferrer">Instagram @maitreya_sb</a>
-                <a href="https://metaleyevisualstudios.com" target="_blank" rel="noopener noreferrer">Metal Eye Visual Studios</a>
-            </div>
-            <p class="footer-copyright">Maitreya Bhagwat &copy; <span id="year">2026</span> // Black &amp; White</p>
-        </footer>
+<section class="chapter" id="ritual" aria-labelledby="ritual-h">
+  <header class="chapter-head">
+    <span class="numeral" aria-hidden="true">II</span>
+    <div>
+      <h2 id="ritual-h">Ritual</h2>
+      <p class="note">Smoke, fire and devotion after dark.</p>
     </div>
+    <span class="range">Plates 09&ndash;14</span>
+  </header>
+<div class="row full">
+<figure class="plate" data-tags="people" style="--ar:1.4980">
+  <button class="frame" type="button" aria-label="View Aarti full screen"><img src="32.jpeg" width="1504" height="1004" alt="Priests holding lamps during an evening ritual, smoke drifting through the light" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">09</span><span class="ttl">Aarti</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="people" style="--ar:1.4980">
+  <button class="frame" type="button" aria-label="View Smoke full screen"><img src="5.jpeg" width="1504" height="1004" alt="Men performing an evening aarti, incense smoke lit from behind" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">10</span><span class="ttl">Smoke</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="people" style="--ar:1.4980">
+  <button class="frame" type="button" aria-label="View Flame full screen"><img src="20.jpeg" width="1504" height="1004" alt="A man carrying a tiered oil lamp through a crowd at night, flame rising from the top" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">11</span><span class="ttl">Flame</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="people" style="--ar:1.4988">
+  <button class="frame" type="button" aria-label="View Heat &amp; Sound full screen"><img src="3.jpeg" width="1280" height="854" alt="A drummer leaning over a dhol tuning the skin over an open flame" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">12</span><span class="ttl">Heat &amp; Sound</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="people motion" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Navratri 2026 full screen"><img src="34.jpeg" width="1800" height="1202" alt="A small girl glances at the camera as blurred figures in white sweep through a lit hall at night" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">13</span><span class="ttl">Navratri 2026</span></figcaption>
+</figure>
+<figure class="plate" data-tags="people" style="--ar:1.5051">
+  <button class="frame" type="button" aria-label="View Shared Meal full screen"><img src="8.jpeg" width="745" height="495" alt="A crowd seated on the ground being served, men moving between the rows" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">14</span><span class="ttl">Shared Meal</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+</section>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
+<section class="chapter" id="light-geometry" aria-labelledby="light-geometry-h">
+  <header class="chapter-head">
+    <span class="numeral" aria-hidden="true">III</span>
+    <div>
+      <h2 id="light-geometry-h">Light &amp; Geometry</h2>
+      <p class="note">Shadow, edge and angle.</p>
+    </div>
+    <span class="range">Plates 15&ndash;23</span>
+  </header>
+<div class="row full">
+<figure class="plate" data-tags="people shadows motion" style="--ar:1.4980">
+  <button class="frame" type="button" aria-label="View Crossing full screen"><img src="25.jpeg" width="1504" height="1004" alt="A man riding a motorcycle across a hard band of sunlight, his shadow thrown long behind him" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">15</span><span class="ttl">Crossing</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="people shadows" style="--ar:0.7500">
+  <button class="frame" type="button" aria-label="View Next Customer full screen"><img src="24.jpeg" width="960" height="1280" alt="A boy standing in a barbershop doorway, backlit against bright daylight, haircut posters on the dark wall" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">16</span><span class="ttl">Next Customer</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="people shadows" style="--ar:0.6706">
+  <button class="frame" type="button" aria-label="View Geometry full screen"><img src="33.jpeg" width="1073" height="1600" alt="A man carrying a helmet walking across concrete, long shadows cutting the frame" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">17</span><span class="ttl">Geometry</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="people shadows" style="--ar:1.4979">
+  <button class="frame" type="button" aria-label="View Overhead full screen"><img src="17.jpeg" width="1059" height="707" alt="Two people walking on paving seen from directly above, their shadows stretched beside them" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">18</span><span class="ttl">Overhead</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row full">
+<figure class="plate" data-tags="shapes people" style="--ar:2.0027">
+  <button class="frame" type="button" aria-label="View From the Bridge full screen"><img src="9.jpeg" width="1500" height="749" alt="Looking down between concrete railings at a small figure walking below" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">19</span><span class="ttl">From the Bridge</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="shapes" style="--ar:0.8080">
+  <button class="frame" type="button" aria-label="View Between full screen"><img src="4.jpeg" width="1166" height="1443" alt="Looking straight up between two apartment towers, sky cut into a narrow strip" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">20</span><span class="ttl">Between</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="shadows motion" style="--ar:0.7500">
+  <button class="frame" type="button" aria-label="View Kinetic full screen"><img src="18.jpeg" width="960" height="1280" alt="A motorcycle crossing a patch of light, seen from above and blurred by motion" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">21</span><span class="ttl">Kinetic</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="shapes" style="--ar:1.4967">
+  <button class="frame" type="button" aria-label="View On the Line full screen"><img src="16.jpeg" width="1600" height="1069" alt="A pigeon in silhouette on a wire, wall edge splitting the frame behind it" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">22</span><span class="ttl">On the Line</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="people shadows" style="--ar:1.4988">
+  <button class="frame" type="button" aria-label="View On Hold full screen"><img src="31.jpeg" width="1280" height="854" alt="A man in a striped shirt on the phone, turned away, beside a shuttered storefront" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">23</span><span class="ttl">On Hold</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+</section>
 
-        /* ---------- PRELOADER ---------- */
-        const counterElement = document.querySelector('.counter');
-        const preloader = document.getElementById('preloader');
-        let count = 0, pageLoaded = false;
+<section class="chapter" id="fog-water" aria-labelledby="fog-water-h">
+  <header class="chapter-head">
+    <span class="numeral" aria-hidden="true">IV</span>
+    <div>
+      <h2 id="fog-water-h">Fog &amp; Water</h2>
+      <p class="note">Where the city goes quiet.</p>
+    </div>
+    <span class="range">Plates 24&ndash;29</span>
+  </header>
+<div class="row wide">
+<figure class="plate" data-tags="fog people" style="--ar:1.4980">
+  <button class="frame" type="button" aria-label="View Ahead of Me full screen"><img src="11.jpeg" width="1504" height="1004" alt="A hooded figure in silhouette walking into heavy fog, a second figure barely visible ahead" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">24</span><span class="ttl">Ahead of Me</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="shapes fog" style="--ar:0.6672">
+  <button class="frame" type="button" aria-label="View First Light full screen"><img src="1.jpeg" width="854" height="1280" alt="Bamboo stems in silhouette against a hazy sun" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">25</span><span class="ttl">First Light</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+<figure class="plate" data-tags="fog people" style="--ar:1.3934">
+  <button class="frame" type="button" aria-label="View Block by Block full screen"><img src="27.jpeg" width="1399" height="1004" alt="A figure walking away down a fog-filled street between apartment blocks, bare branches in the foreground" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">26</span><span class="ttl">Block by Block</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="fog people" style="--ar:1.4980">
+  <button class="frame" type="button" aria-label="View Morning Run full screen"><img src="26.jpeg" width="1504" height="1004" alt="A lone runner on a path in dense fog, seen from a balcony above" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">27</span><span class="ttl">Morning Run</span><span class="loc">Pune, 2025</span></figcaption>
+</figure>
+</div>
+<div class="row full">
+<figure class="plate" data-tags="fog places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Still Water full screen"><img src="43.jpeg" width="1800" height="1202" alt="A single coot swimming across calm grey water, ripples spreading behind it" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">28</span><span class="ttl">Still Water</span><span class="loc">Kasarsai, Pune, 2026</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="fog shapes places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Far Shore full screen"><img src="44.jpeg" width="1800" height="1202" alt="A low hill reflected in a still lake under a pale sky, bare branches in the foreground" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">29</span><span class="ttl">Far Shore</span><span class="loc">Kasarsai, Pune, 2026</span></figcaption>
+</figure>
+</div>
+</section>
 
-        window.addEventListener('load', () => { pageLoaded = true; });
+<section class="chapter" id="harneshwar-tekdi" aria-labelledby="harneshwar-tekdi-h">
+  <header class="chapter-head">
+    <span class="numeral" aria-hidden="true">V</span>
+    <div>
+      <h2 id="harneshwar-tekdi-h">Harneshwar Tekdi</h2>
+      <p class="note">A small hut on a hill above Pune.</p>
+    </div>
+    <span class="range">Plates 30&ndash;37</span>
+  </header>
+<div class="row full">
+<figure class="plate" data-tags="shapes shadows places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Overlooking full screen"><img src="36.jpeg" width="1800" height="1202" alt="A tree in dark silhouette framing a hazy city and highway far below" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">30</span><span class="ttl">Overlooking</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="shapes places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Lookout full screen"><img src="35.jpeg" width="1800" height="1202" alt="A small hut on a grassy hillside under a hazy sky, valley fading into the distance" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">31</span><span class="ttl">Lookout</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="shapes places" style="--ar:0.6678">
+  <button class="frame" type="button" aria-label="View The Climb full screen"><img src="37.jpeg" width="1202" height="1800" alt="A worn path climbing through dry grass to a tree and a small shrine on the ridge" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">32</span><span class="ttl">The Climb</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+<figure class="plate" data-tags="shapes fog places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Hilltop Hut full screen"><img src="38.jpeg" width="1800" height="1202" alt="A weathered hut with a dark roof on a hill, fence posts leading toward a misty city" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">33</span><span class="ttl">Hilltop Hut</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+</div>
+<div class="row wide">
+<figure class="plate" data-tags="shapes shadows places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Window full screen"><img src="39.jpeg" width="1800" height="1202" alt="Close view of the hut corner, a dark window and overgrown bush against a glowing sky" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">34</span><span class="ttl">Window</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+</div>
+<div class="spread">
+<figure class="plate" data-tags="shapes shadows places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Whitewash full screen"><img src="40.jpeg" width="1800" height="1202" alt="A whitewashed hut seen low behind concrete fence posts, sky darkening at the edges" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">35</span><span class="ttl">Whitewash</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+<figure class="plate" data-tags="shapes fog places" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Boundary full screen"><img src="41.jpeg" width="1800" height="1202" alt="The hut at the right edge of the frame, a path and fence leading to a hazy hill" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">36</span><span class="ttl">Boundary</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+</div>
+<div class="row full">
+<figure class="plate" data-tags="people shapes shadows" style="--ar:1.4975">
+  <button class="frame" type="button" aria-label="View Untitled full screen"><img src="42.jpeg" width="1800" height="1202" alt="A dark figure bending beside a white wall, concrete fence posts in the foreground" loading="lazy" decoding="async"></button>
+  <figcaption><span class="no">37</span><span class="ttl">Untitled</span><span class="loc">Harneshwar, Pune, 2026</span></figcaption>
+</figure>
+</div>
+</section>
 
-        const preloadInterval = setInterval(() => {
-            const ceiling = pageLoaded ? 100 : 95;
-            count = Math.min(count + Math.floor(Math.random() * 12) + 3, ceiling);
-            counterElement.textContent = count + '%';
-            if (count >= 100) {
-                clearInterval(preloadInterval);
-                preloader.classList.add('hidden');
-            }
-        }, 50);
+</main>
 
-        setTimeout(() => {
-            clearInterval(preloadInterval);
-            preloader.classList.add('hidden');
-        }, 6000);
+<section class="index" id="index" aria-label="Index of all photographs">
+  <div class="index-top">
+    <h2>Index</h2>
+    <div class="chips" id="chips" role="group" aria-label="Filter photographs by subject"></div>
+  </div>
+  <div class="sheet" id="sheet"></div>
+  <noscript><p class="mono" style="color:var(--ink-3)">The index needs JavaScript. All photographs are shown above.</p></noscript>
+</section>
 
-        /* ---------- CUSTOM CURSOR ---------- */
-        const cursor = document.querySelector('.custom-cursor');
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            document.querySelectorAll('.image-wrapper, a, button').forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-            });
-        }
+<footer id="contact">
+  <p class="foot-big"><a href="https://instagram.com/maitreya_sb" target="_blank" rel="noopener noreferrer">Say hello.</a></p>
+  <div class="foot-links">
+    <a href="tel:+918767350426">+91 87673 50426</a>
+    <a href="https://instagram.com/maitreya_sb" target="_blank" rel="noopener noreferrer">Instagram @maitreya_sb</a>
+    <a href="https://metaleyevisualstudios.com" target="_blank" rel="noopener noreferrer">Commercial &mdash; Metal Eye Visual Studios</a>
+  </div>
+  <div class="copy"><span>&copy; <span id="year">2026</span> Maitreya Bhagwat</span><span>Black &amp; white &mdash; Maharashtra</span></div>
+</footer>
 
-        /* ---------- FILTERING ---------- */
-        const allItems = Array.from(document.querySelectorAll('.gallery-item'));
-        const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
-        const emptyState = document.getElementById('emptyState');
-        const LAYOUTS = ['layout-a', 'layout-b', 'layout-c', 'layout-d', 'layout-e', 'layout-f'];
+<div id="viewer" role="dialog" aria-modal="true" aria-label="Photograph viewer" aria-hidden="true">
+  <div class="v-top"><span class="v-count" id="vCount"></span><button type="button" id="vClose">Close &times;</button></div>
+  <div class="v-stage" id="vStage">
+    <button type="button" class="v-nav v-prev" id="vPrev" aria-label="Previous photograph">&larr;</button>
+    <img id="vImg" alt="">
+    <button type="button" class="v-nav v-next" id="vNext" aria-label="Next photograph">&rarr;</button>
+  </div>
+  <p class="v-cap" id="vCap"></p>
+</div>
 
-        // Show how many photos sit under each tab, calculated from the actual tags
-        filterButtons.forEach(btn => {
-            const filter = btn.dataset.filter;
-            const n = filter === 'all'
-                ? allItems.length
-                : allItems.filter(i => (i.dataset.tags || '').split(/\s+/).includes(filter)).length;
-            btn.insertAdjacentHTML('beforeend', `<span class="filter-count">${n}</span>`);
-        });
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function visibleItems() {
-            return allItems.filter(i => !i.classList.contains('is-hidden'));
-        }
+  /* ---- intro ---- */
+  function go(){document.body.classList.add('loaded')}
+  if(document.readyState==='complete') go(); else window.addEventListener('load',go);
+  setTimeout(go,2500);
+  $('#year').textContent=new Date().getFullYear();
 
-        // Reassign the asymmetric layout by visible position, so no gaps appear
-        function relayout() {
-            visibleItems().forEach((item, i) => {
-                LAYOUTS.forEach(c => item.classList.remove(c));
-                item.classList.add(LAYOUTS[i % LAYOUTS.length]);
-            });
-        }
+  /* ---- plates: the single source of truth for viewer + index ---- */
+  var plates=$$('.plate').map(function(el,i){
+    var img=$('img',el);
+    return {el:el,src:img.getAttribute('src'),alt:img.alt,
+      no:$('.no',el).textContent,title:$('.ttl',el).textContent,
+      loc:($('.loc',el)||{}).textContent||'',
+      tags:(el.dataset.tags||'').split(/\s+/).filter(Boolean),
+      ar:parseFloat(el.style.getPropertyValue('--ar'))||1.5};
+  });
 
-        function applyFilter(filter) {
-            allItems.forEach(item => {
-                const tags = (item.dataset.tags || '').split(/\s+/);
-                const show = filter === 'all' || tags.includes(filter);
-                item.classList.toggle('is-hidden', !show);
-                // Re-trigger the fade for whatever just appeared
-                if (show) item.classList.remove('in-view');
-            });
+  /* ---- reveal on scroll ---- */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.06});
+    $$('.plate:not(.hero-plate), .chapter-head').forEach(function(el){io.observe(el)});
+  } else { $$('.plate, .chapter-head').forEach(function(el){el.classList.add('in')}) }
 
-            relayout();
-
-            const count = visibleItems().length;
-            emptyState.style.display = count === 0 ? 'block' : 'none';
-
-            // Fade the newly visible set back in
-            requestAnimationFrame(() => {
-                visibleItems().forEach(item => item.classList.add('in-view'));
-            });
-
-            filterButtons.forEach(btn => {
-                btn.setAttribute('aria-pressed', String(btn.dataset.filter === filter));
-            });
-        }
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-        });
-
-        /* ---------- SCROLL FADES (initial load only) ---------- */
-        relayout();
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        allItems.forEach(item => observer.observe(item));
-
-        /* ---------- LIGHTBOX ---------- */
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = lightbox.querySelector('img');
-        const caption = document.getElementById('lightboxCaption');
-        const closeBtn = document.getElementById('closeBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        let currentIndex = 0;
-        let lastFocused = null;
-
-        // Arrow keys walk only the photos in the ACTIVE filter, not all of them
-        function activeSet() { return visibleItems(); }
-
-        function render(index) {
-            const set = activeSet();
-            if (!set.length) return;
-            currentIndex = (index + set.length) % set.length;
-            const item = set[currentIndex];
-            const img = item.querySelector('img');
-            const title = item.querySelector('.photo-title').textContent;
-            const desc = item.querySelector('.photo-desc').textContent;
-
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            caption.textContent = `${title} — ${desc}   (${currentIndex + 1}/${set.length})`;
-        }
-
-        function openLightbox(item) {
-            lastFocused = document.activeElement;
-            render(activeSet().indexOf(item));
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            closeBtn.focus();
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-            if (lastFocused) lastFocused.focus();
-        }
-
-        allItems.forEach(item => {
-            item.querySelector('.image-wrapper')
-                .addEventListener('click', () => openLightbox(item));
-        });
-
-        closeBtn.addEventListener('click', closeLightbox);
-        prevBtn.addEventListener('click', () => render(currentIndex - 1));
-        nextBtn.addEventListener('click', () => render(currentIndex + 1));
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') render(currentIndex - 1);
-            if (e.key === 'ArrowRight') render(currentIndex + 1);
-        });
-
-        /* ---------- FOOTER YEAR ---------- */
-        document.getElementById('year').textContent = new Date().getFullYear();
+  /* ---- progress ---- */
+  var prog=$('#progress'),ticking=false;
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      var h=document.documentElement.scrollHeight-innerHeight;
+      prog.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'; ticking=false;
     });
-    </script>
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- viewer ---- */
+  var viewer=$('#viewer'),vImg=$('#vImg'),vCap=$('#vCap'),vCount=$('#vCount'),vStage=$('#vStage');
+  var set=plates,cur=0,last=null;
+  function show(i){
+    cur=(i+set.length)%set.length; var p=set[cur];
+    vImg.classList.remove('ready');
+    var n=new Image(); n.onload=function(){ if(set[cur]===p){vImg.src=p.src;vImg.alt=p.alt;vImg.classList.add('ready')} };
+    n.src=p.src; if(n.complete&&n.naturalWidth){vImg.src=p.src;vImg.alt=p.alt;vImg.classList.add('ready')}
+    vCount.textContent=('0'+(cur+1)).slice(-2)+' / '+('0'+set.length).slice(-2);
+    vCap.innerHTML='<b></b><span></span><span></span>';
+    vCap.children[0].textContent=p.title; vCap.children[1].textContent=p.loc; vCap.children[2].textContent='Plate '+p.no;
+    [1,-1].forEach(function(d){var q=set[(cur+d+set.length)%set.length],pre=new Image();pre.src=q.src});
+  }
+  function openV(list,i){last=document.activeElement;set=list;show(i);viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('#vClose').focus()}
+  function closeV(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';if(last&&last.focus)last.focus()}
+  plates.forEach(function(p,i){$('.frame',p.el).addEventListener('click',function(){openV(plates,i)})});
+  $('#vClose').addEventListener('click',closeV);
+  $('#vPrev').addEventListener('click',function(){show(cur-1)});
+  $('#vNext').addEventListener('click',function(){show(cur+1)});
+  viewer.addEventListener('click',function(e){if(e.target===viewer||e.target===vStage)closeV()});
+  addEventListener('keydown',function(e){
+    if(!viewer.classList.contains('open'))return;
+    if(e.key==='Escape')closeV();
+    else if(e.key==='ArrowLeft')show(cur-1);
+    else if(e.key==='ArrowRight')show(cur+1);
+    else if(e.key==='Tab'){var f=$$('#viewer button');var a=document.activeElement;
+      if(e.shiftKey&&a===f[0]){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&a===f[f.length-1]){e.preventDefault();f[0].focus()}}
+  });
+  var sx=0,sy=0;
+  viewer.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  viewer.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.4)show(cur+(dx<0?1:-1));else if(dy>90&&Math.abs(dy)>Math.abs(dx)*1.4)closeV()},{passive:true});
+
+  /* ---- index (contact sheet) with the subject filters ---- */
+  var sheet=$('#sheet'),chips=$('#chips');
+  var LABELS={people:'People',shapes:'Shapes',shadows:'Shadows',fog:'Fog',places:'Places',motion:'Motion'};
+  var thumbs=plates.map(function(p,i){
+    var b=document.createElement('button');b.type='button';b.className='thumb';b.style.setProperty('--ar',p.ar);
+    b.setAttribute('aria-label','Open '+p.title);
+    var im=new Image();im.alt='';im.loading='lazy';im.decoding='async';
+    im.src='thumbs/'+p.src.replace(/^.*\//,'');
+    im.onerror=function(){im.onerror=null;im.src=p.src};
+    var n=document.createElement('span');n.className='n';n.textContent=p.no;
+    b.appendChild(im);b.appendChild(n);
+    b.addEventListener('click',function(){var list=plates.filter(function(q){return active==='all'||q.tags.indexOf(active)>-1});openV(list,list.indexOf(p))});
+    sheet.appendChild(b);return b;
+  });
+  var active='all';
+  function chip(key,label,count){
+    var c=document.createElement('button');c.type='button';c.className='chip';c.setAttribute('aria-pressed',key==='all'?'true':'false');c.dataset.k=key;
+    c.innerHTML=label+'<sup>'+count+'</sup>';
+    c.addEventListener('click',function(){
+      active=key;$$('.chip').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.k===key))});
+      plates.forEach(function(p,i){thumbs[i].classList.toggle('is-off',!(key==='all'||p.tags.indexOf(key)>-1))});
+    });
+    chips.appendChild(c);
+  }
+  chip('all','All',plates.length);
+  Object.keys(LABELS).forEach(function(k){var n=plates.filter(function(p){return p.tags.indexOf(k)>-1}).length;if(n)chip(k,LABELS[k],n)});
+})();
+</script>
 </body>
 </html>
